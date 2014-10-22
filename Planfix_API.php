@@ -30,7 +30,7 @@ class Planfix_API {
      * Version of the library
      */
     const VERSION = '1.0.1';
-    
+
     /**
      * Maximum size of a page for *.getList requests
      */
@@ -388,7 +388,7 @@ class Planfix_API {
                     if (is_array($val2)) {
                         $this->importParams($requestXml->$key, $val2);
                     } else {
-                        $requestXml->addChild($key2, $val2);
+                        $requestXml->$key->addChild($key2, $val2);
                     }
                 }
             } else {
@@ -423,7 +423,7 @@ class Planfix_API {
 
         foreach ($node as $child) {
             if (is_array($child)) {
-                $normStr .= implode('', $child);
+                $normStr .= implode('', array_map(array($this,'normalizeXml'), $child));
             } elseif (is_object($child)) {
                 $normStr .= $this->normalizeXml($child);
             } else {
