@@ -568,7 +568,7 @@ class Planfix_API {
                 $result['meta'][$key] = (int) $val;
             }
 
-            if ($result['meta']['count']) {
+            if ($result['meta'] == null || $result['meta']['totalCount'] || $result['meta']['count']) {
                 $result['data'] = $this->exportData($responseXml);
             }
         }
