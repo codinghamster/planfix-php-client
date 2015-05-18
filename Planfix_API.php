@@ -594,8 +594,9 @@ class Planfix_API {
         }
 
         $is_duplicate = count(array_unique($names)) != count($names) ? true : false;
+        $grandchildren = $child->children();
 
-        foreach($rootChildren as $child) {
+        if ($grandchildren->count() || count($grandchildren) > 1) {
             if (count($child->children()) > 1) {
                 $data[$root] = array_merge($data[$root], $is_duplicate ? array($this->exportData($child)) : $this->exportData($child));
             } else {
