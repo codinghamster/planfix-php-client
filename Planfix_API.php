@@ -44,7 +44,9 @@ class Planfix_API {
         CURLOPT_RETURNTRANSFER    => 1,
         CURLOPT_TIMEOUT           => 60,
         CURLOPT_SSL_VERIFYPEER    => 0,
-        CURLOPT_SSL_VERIFYHOST    => 0
+        CURLOPT_SSL_VERIFYHOST    => 0,
+        CURLOPT_FOLLOWLOCATION    => 1,
+        CURLOPT_POSTREDIR         => 1
     );
 
     /**
