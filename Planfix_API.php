@@ -22,11 +22,6 @@ class Planfix_API_Exception extends Exception {}
 class Planfix_API {
 
     /**
-     * Url that handles API requests
-     */
-    const API_URL = 'https://api.planfix.ru/xml/';
-
-    /**
      * Version of the library
      */
     const VERSION = '1.0.1';
@@ -51,6 +46,13 @@ class Planfix_API {
      * Maximum simultaneous Curl handles in a Multi Curl session
      */
     public static $MAX_BATCH_SIZE = 10;
+
+    /**
+     * Api url
+     *
+     * @var string
+     */
+    protected $apiUrl;
 
     /**
      * Api key
@@ -98,14 +100,36 @@ class Planfix_API {
      * Initializes a Planfix Client
      *
      * Required parameters:
+     *    - apiUrl - API Url
      *    - apiKey - Application Key
      *    - apiSecret - Application Secret
      *
      * @param array $config The array containing required parameters
      */
     public function __construct($config) {
+        $this->setApiUrl($config['apiUrl']);
         $this->setApiKey($config['apiKey']);
         $this->setApiSecret($config['apiSecret']);
+    }
+
+    /**
+     * Set the Api url
+     *
+     * @param string $apiUrl Api url
+     * @return Planfix_API
+     */
+    public function setApiUrl($apiUrl) {
+        $this->apiUrl = $apiUrl;
+        return $this;
+    }
+
+    /**
+     * Get the Api url
+     *
+     * @return string the Api url
+     */
+    public function getApiUrl() {
+        return $this->apiUrl;
     }
 
     /**
@@ -509,7 +533,7 @@ class Planfix_API {
      * @return resource the Curl handle
      */
     protected function prepareCurlHandle($requestXml) {
-        $ch = curl_init(self::API_URL);
+        $ch = curl_init($this->getApiUrl());
 
         curl_setopt_array($ch, self::$CURL_OPTS);
 

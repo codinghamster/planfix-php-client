@@ -13,10 +13,10 @@ PHP Planfix client (Planfix_API) v.1.0.1
 1. Подключаем клиент:
 
         require 'Planfix_API.php';
-        $PF = new Planfix_API(array('apiKey' => 'YOUR_API_KEY', 'apiSecret' => 'YOUR_API_SECRET'));
+        $PF = new Planfix_API(array('apiUrl' => 'YOUR_API_URL', 'apiKey' => 'YOUR_API_KEY', 'apiSecret' => 'YOUR_API_SECRET'));
         $PF->setAccount('YOUR_ACCOUNT');
 
-   Подразумевается, что у вас уже есть ApiKey и ApiSecret. Получить их можно [здесь](http://planfix.ru/dev.html).
+   Подразумевается, что у вас уже есть ApiUrl, ApiKey и ApiSecret. Получить их можно [здесь](http://planfix.ru/dev.html).
    Создаем обьект клиента и устанавливаем аккаунт в ПланФиксе ({аккаунт}.planfix.ru).
 
 2. Проходим процедуру авторизации пользователя:
